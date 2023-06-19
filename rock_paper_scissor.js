@@ -13,6 +13,10 @@ function getPlayerChoice(choice)
         } 
 }
 */
+
+let pscore = 0;
+let cscore = 0;
+
 function getComputerChoice()
 {
     let choices = [
@@ -28,7 +32,10 @@ function getComputerChoice()
 function playRound(playerSelection, computerSelection, pCount, cCount)
 {   
 
-    let result = document.querySelector(".result");
+    let result = document.querySelector(".result .r");
+    let p = document.querySelector(".result .ps");
+    let c = document.querySelector(".result .cs");
+    
 
     if(playerSelection === false)
     {
@@ -46,12 +53,19 @@ function playRound(playerSelection, computerSelection, pCount, cCount)
     }
     else if(win === false)
     {
+        cscore++;
         result.innerHTML = (`you lose!! you picked ${playerSelection} and the computer picked ${computerSelection}`);
+        c.innerHTML = cscore;
+        p.innerHTML = pscore;
         //return "loss";
     }
     else if(win === true)
     {
+        pscore++;
         result.innerHTML = (`you win!! you picked ${playerSelection} and the computer picked ${computerSelection}`);
+        c.innerHTML = cscore;
+        p.innerHTML = pscore;
+
         //return "win";
     }     
 }
