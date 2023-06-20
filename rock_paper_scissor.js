@@ -70,6 +70,11 @@ function playRound(playerSelection, computerSelection, pCount, cCount)
     }     
 }
 
+
+//game loop till round 5 for console based rock paper scissors game which is not required anymore 
+
+/*
+
 function game()
 {
     let pCount = 0;
@@ -117,6 +122,9 @@ function game()
     }
 
 }
+
+
+*/
 
 //long redundant implementation to adding interactivity to buttons
 /* 
