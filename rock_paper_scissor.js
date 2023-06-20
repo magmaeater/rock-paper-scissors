@@ -1,6 +1,7 @@
-function getPlayerChoice()
+
+/*
+function getPlayerChoice(choice)
 {
-        let choice = prompt("Enter rock, paper or scissors");
         
         if(choice.toLowerCase() === 'rock' || choice.toLowerCase() === 'paper'|| choice.toLowerCase() === 'scissors')
         {
@@ -11,6 +12,10 @@ function getPlayerChoice()
             return false;
         } 
 }
+*/
+
+let pscore = 0;
+let cscore = 0;
 
 function getComputerChoice()
 {
@@ -26,10 +31,16 @@ function getComputerChoice()
 
 function playRound(playerSelection, computerSelection, pCount, cCount)
 {   
+
+    let result = document.querySelector(".result .r");
+    let p = document.querySelector(".result .ps");
+    let c = document.querySelector(".result .cs");
+    
+
     if(playerSelection === false)
     {
-        console.log("invalid input");
-        return;
+        result.innerHTML = ("invalid input");
+        //return;
     }
     
     let win = playerSelection === "rock" && computerSelection === "scissors" || playerSelection === "paper" && computerSelection === "rock" || playerSelection === "scissors" && computerSelection === "paper";
@@ -37,20 +48,32 @@ function playRound(playerSelection, computerSelection, pCount, cCount)
     
     if(draw === true)
     {
-        console.log(`draw!!\ncomputer - ${computerSelection}\nplayer - ${playerSelection.toLowerCase()}`);
-        return "draw";
+        result.innerHTML = (`draw!! <br> computer - ${computerSelection}<br>player - ${playerSelection}`);
+        //return "draw";
     }
     else if(win === false)
     {
-        console.log(`you lose!! you picked ${playerSelection.toLowerCase()} and the computer picked ${computerSelection}`);
-        return "loss";
+        cscore++;
+        result.innerHTML = (`you lose!! you picked ${playerSelection} and the computer picked ${computerSelection}`);
+        c.innerHTML = cscore;
+        p.innerHTML = pscore;
+        //return "loss";
     }
     else if(win === true)
     {
-        console.log(`you win!! you picked ${playerSelection.toLowerCase()} and the computer picked ${computerSelection}`);
-        return "win";
+        pscore++;
+        result.innerHTML = (`you win!! you picked ${playerSelection} and the computer picked ${computerSelection}`);
+        c.innerHTML = cscore;
+        p.innerHTML = pscore;
+
+        //return "win";
     }     
 }
+
+
+//game loop till round 5 for console based rock paper scissors game which is not required anymore 
+
+/*
 
 function game()
 {
@@ -85,7 +108,7 @@ function game()
     if(pCount > cCount)
     {
         console.log("you win the overall match, well done!");
-        console.log(`final score - \nplayer - ${pCount}\ncomputer - ${cCount}`);
+        console.log(`final score - player - ${pCount}\ncomputer - ${cCount}`);
     }
     else if (pCount < cCount)
     {
@@ -100,4 +123,51 @@ function game()
 
 }
 
-game();
+
+*/
+
+//long redundant implementation to adding interactivity to buttons
+/* 
+let rock = document.querySelector("#rock");
+rock.addEventListener("click", () => 
+{
+    let choice = "rock";
+    let comp = getComputerChoice();
+    playRound(choice, comp);
+});
+let paper = document.querySelector("#paper");
+paper.addEventListener("click", () => 
+{
+    let choice = "paper";
+    let comp = getComputerChoice();
+    playRound(choice, comp);
+    
+});
+let scissors = document.querySelector("#scissors");
+scissors.addEventListener("click", () => 
+{
+    let choice = "scissors";
+    let comp = getComputerChoice();
+    playRound(choice, comp);
+    
+});
+*/
+
+//efficient implementation to adding interactivity to buttons
+let rock = document.querySelector("#rock");
+let paper = document.querySelector("#paper");
+let scissors = document.querySelector("#scissors");
+
+let ops = [rock,paper,scissors];
+
+ops.forEach(choice => {
+    choice.addEventListener("click", () => 
+    {
+        let p = choice.textContent.toLowerCase();
+        let comp = getComputerChoice();
+        playRound(p, comp);
+        
+    });
+})
+
+//game();
